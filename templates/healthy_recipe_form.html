@@ -1,0 +1,58 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <h1 class="title">Find a Healthy Recipe</h1>
+    <form method="post" action="/healthy_recipe">
+        <div class="field">
+        <label class="label">Calories</label>
+        <div class="range-slider">
+            <input class="range-slider__range" type="range" value="100" min="0" max="1000" name="min_calories">
+            <span class="range-slider__value">100</span>
+            <input class="range-slider__range" type="range" value="500" min="0" max="1000" name="max_calories">
+            <span class="range-slider__value">500</span>
+        </div>
+        </div>
+        <div class="field">
+        <label class="label">Fat</label>
+        <div class="range-slider">
+            <input class="range-slider__range" type="range" value="0" min="0" max="100" name="max_fat">
+            <span class="range-slider__value">0</span>
+            <span class="range-slider__unit">g</span>
+        </div>
+        </div>
+        <div class="field">
+        <label class="label">Protein</label>
+        <div class="range-slider">
+            <input class="range-slider__range" type="range" value="0" min="0" max="100" name="max_protein">
+            <span class="range-slider__value">0</span>
+            <span class="range-slider__unit">g</span>
+        </div>
+        </div>
+        <div class="field">
+        <label class="label">Carbs</label>
+        <div class="range-slider">
+            <input class="range-slider__range" type="range" value="0" min="0" max="100" name="max_carbs">
+            <span class="range-slider__value">0</span>
+            <span class="range-slider__unit">g</span>
+        </div>
+        </div>
+        <button class="button is-primary" type="submit">Find Recipe</button>
+    </form>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Update slider values on change
+var rangeSlider = function(){
+    var slider = document.querySelectorAll('.range-slider');
+    Array.prototype.forEach.call(slider,function(el){
+    var range = el.querySelector('.range-slider__range');
+    var value = el.querySelector('.range-slider__value');
+    range.addEventListener('input',function(){
+        value.innerHTML = range.value;
+    });
+    });
+};
+rangeSlider();
+</script>
+{% endblock %}

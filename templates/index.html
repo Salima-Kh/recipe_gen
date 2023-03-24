@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recipe Generator</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #FFE4B5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            position: relative;
+        }
+        .logo {
+            background-image: url("logo.png");
+            background-repeat: no-repeat;
+            background-size: contain;
+            height: 80px;
+            width: 80px;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 1;
+        }
+        h1 {
+            font-size: 48px;
+            margin-top: 0;
+            text-align: center;
+            color: #FF7F50;
+            text-shadow: 2px 2px 0 #FFF;
+            animation: shake 0.8s ease-in-out infinite;
+        }
+        p {
+            font-size: 24px;
+            margin: 16px 0;
+            text-align: center;
+            color: #FF7F50;
+            text-shadow: 1px 1px 0 #FFF;
+        }
+        input[type="submit"] {
+            font-size: 24px;
+            padding: 12px 24px;
+            background-color: #FF7F50;
+            color: #FFF;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            box-shadow: 2px 2px 0 #FFF;
+            text-shadow: none;
+        }
+        input[type="submit"]:hover {
+            background-color: #FFA07A;
+            transform: translateY(-2px);
+            box-shadow: none;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            filter: brightness(70%);
+            margin-top: 50px;
+            animation: pulse 1s ease-in-out infinite;
+        }
+        .chef {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1;
+            filter: brightness(70%);
+            animation: rotate 1s ease-in-out infinite;
+        }
+        .healthy-recipe-btn {
+        background-color: #2E8B57;
+        }
+
+        .recipe-btn {
+        font-size: 24px;
+        padding: 12px 24px;
+        background-color: #FF7F50;
+        color: #FFF;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+        box-shadow: 2px 2px 0 #FFF;
+        text-shadow: none;
+        margin-top: 16px;
+        }
+
+        .recipe-btn:hover {
+        background-color: #FFA07A;
+        transform: translateY(-2px);
+        box-shadow: none;
+        }
+
+        /* Animation keyframes */
+        @keyframes shake {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            25%, 75% {
+                transform: translateX(-5px);
+            }
+            50% {
+                transform: translateX(5px);
+            }
+        }
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        @keyframes rotate {
+            0% {
+                transform: rotate(0);
+            }
+            50% {
+                transform: rotate(45deg);
+            }
+            100% {
+                transform: rotate(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo"></div>
+        <h1>Welcome to the Recipe Generator!</h1>
+        <p>Click the button below to generate a random recipe:</p>
+        <form action="/generate_recipe">
+            <input type="submit" value="Generate Recipe" class="recipe-btn">
+            </form>
+            <p>Want a healthy recipe instead?</p>
+            <form action="/healthy_recipe">
+            <input type="submit" value="Healthy Recipe" class="recipe-btn healthy-recipe-btn">
+            </form>
+            <img src="chef.png" class="chef">
+        </div>      
+    <script>
+        // Add click event listener to the recipe button
+        const recipeBtn = document.querySelector("#recipeBtn");
+        recipeBtn.addEventListener("click", () => {
+            // Change the text of the h1 tag to a random message
+            const messages = ["Get ready to cook!", "Time to eat!", "Let's get cookin'!"];
+            const randomIndex = Math.floor(Math.random() * messages.length);
+            const h1 = document.querySelector("h1");
+            h1.textContent = messages[randomIndex];
+            
+            // Add a delay before showing the new recipe image
+            setTimeout(() => {
+                // Replace the chef image with a random recipe image
+                const recipeImages = ["recipe1.png", "recipe2.png", "recipe3.png", "recipe4.png"];
+                const randomIndex = Math.floor(Math.random() * recipeImages.length);
+                const img = document.querySelector("img");
+                img.src = recipeImages[randomIndex];
+            }, 1000); // Wait for 1 second before changing the image
+        });
+    </script>    
+</body>
+</html>

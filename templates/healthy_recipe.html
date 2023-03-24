@@ -1,0 +1,56 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="recipe">
+<h1 class="title">{{ recipe.strMeal }}</h1>
+<div class="columns">
+    <div class="column">
+    <img src="{{ recipe.strMealThumb }}" alt="{{ recipe.strMeal }}" class="recipe-image">
+    </div>
+    <div class="column">
+    <div class="nutrition">
+        <div class="nutrition-label">
+        <div class="nutrition-label__title">Nutrition Facts</div>
+        <div class="nutrition-label__serving">Serving Size: {{ nutrition.nf_serving_size_qty }}{{ nutrition.nf_serving_size_unit }}</div>
+        <div class="nutrition-label__amount">
+            <span class="nutrition-label__value">{{ nutrition.nf_calories }}</span>
+            <span class="nutrition-label__unit">calories</span>
+        </div>
+        <div class="nutrition-label__line">
+            <span class="nutrition-label__label">Total Fat:</span>
+            <span class="nutrition-label__value">{{ nutrition.nf_total_fat }}</span>
+            <span class="nutrition-label__unit">g</span>
+        </div>
+        <div class="nutrition-label__line">
+            <span class="nutrition-label__label">Protein:</span>
+            <span class="nutrition-label__value">{{ nutrition.nf_protein }}</span>
+            <span class="nutrition-label__unit">g</span>
+        </div>
+        <div class="nutrition-label__line">
+            <span class="nutrition-label__label">Total Carbohydrates:</span>
+            <span class="nutrition-label__value">{{ nutrition.nf_total_carbohydrate }}</span>
+            <span class="nutrition-label__unit">g</span>
+        </div>
+        </div>
+        <button class="button is-primary" onclick="location.reload()">Try Again</button>
+    </div>
+    </div>
+</div>
+<div class="columns">
+    <div class="column">
+    <h2 class="subtitle">Ingredients:</h2>
+    <ul>
+        {% for i in range(1, 21) %}
+        {% if recipe[f'strIngredient{i}'] %}
+            <li>{{ recipe[f'strIngredient{i}'] }} - {{ recipe[f'strMeasure{i}'] }}</li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+    </div>
+    <div class="column">
+    <h2 class="subtitle">Instructions:</h2>
+    <p>{{ recipe.strInstructions }}</p>
+    </div>
+</div>
+</div>
+{% endblock %}
